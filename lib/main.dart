@@ -1,3 +1,4 @@
+import 'package:error_handler/features/home/presentation/screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -34,16 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Home',
-            ),
-          ],
-        ),
-      ),
+      appBar: AppBar(),
+      body: HomeScreen(),
     );
   }
 }
