@@ -417,28 +417,30 @@ abstract class _MakeEmail implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
+  HomeData? get homeData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() processing,
-    required TResult Function() success,
-    required TResult Function(AppException$Base error) error,
+    required TResult Function(HomeData? homeData) idle,
+    required TResult Function(HomeData? homeData) processing,
+    required TResult Function(HomeData homeData) success,
+    required TResult Function(HomeData? homeData, AppException$Base error)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? processing,
-    TResult? Function()? success,
-    TResult? Function(AppException$Base error)? error,
+    TResult? Function(HomeData? homeData)? idle,
+    TResult? Function(HomeData? homeData)? processing,
+    TResult? Function(HomeData homeData)? success,
+    TResult? Function(HomeData? homeData, AppException$Base error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? processing,
-    TResult Function()? success,
-    TResult Function(AppException$Base error)? error,
+    TResult Function(HomeData? homeData)? idle,
+    TResult Function(HomeData? homeData)? processing,
+    TResult Function(HomeData homeData)? success,
+    TResult Function(HomeData? homeData, AppException$Base error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -467,12 +469,22 @@ mixin _$HomeState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeStateCopyWith<HomeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
+  @useResult
+  $Res call({HomeData homeData});
+
+  $HomeDataCopyWith<$Res>? get homeData;
 }
 
 /// @nodoc
@@ -487,13 +499,46 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? homeData = null,
+  }) {
+    return _then(_value.copyWith(
+      homeData: null == homeData
+          ? _value.homeData!
+          : homeData // ignore: cast_nullable_to_non_nullable
+              as HomeData,
+    ) as $Val);
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $HomeDataCopyWith<$Res>? get homeData {
+    if (_value.homeData == null) {
+      return null;
+    }
+
+    return $HomeDataCopyWith<$Res>(_value.homeData!, (value) {
+      return _then(_value.copyWith(homeData: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeState$IdleImplCopyWith<$Res> {
+abstract class _$$HomeState$IdleImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
   factory _$$HomeState$IdleImplCopyWith(_$HomeState$IdleImpl value,
           $Res Function(_$HomeState$IdleImpl) then) =
       __$$HomeState$IdleImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({HomeData? homeData});
+
+  @override
+  $HomeDataCopyWith<$Res>? get homeData;
 }
 
 /// @nodoc
@@ -506,60 +551,88 @@ class __$$HomeState$IdleImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? homeData = freezed,
+  }) {
+    return _then(_$HomeState$IdleImpl(
+      freezed == homeData
+          ? _value.homeData
+          : homeData // ignore: cast_nullable_to_non_nullable
+              as HomeData?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeState$IdleImpl implements HomeState$Idle {
-  const _$HomeState$IdleImpl();
+  const _$HomeState$IdleImpl(this.homeData);
+
+  @override
+  final HomeData? homeData;
 
   @override
   String toString() {
-    return 'HomeState.idle()';
+    return 'HomeState.idle(homeData: $homeData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HomeState$IdleImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$HomeState$IdleImpl &&
+            (identical(other.homeData, homeData) ||
+                other.homeData == homeData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, homeData);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeState$IdleImplCopyWith<_$HomeState$IdleImpl> get copyWith =>
+      __$$HomeState$IdleImplCopyWithImpl<_$HomeState$IdleImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() processing,
-    required TResult Function() success,
-    required TResult Function(AppException$Base error) error,
+    required TResult Function(HomeData? homeData) idle,
+    required TResult Function(HomeData? homeData) processing,
+    required TResult Function(HomeData homeData) success,
+    required TResult Function(HomeData? homeData, AppException$Base error)
+        error,
   }) {
-    return idle();
+    return idle(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? processing,
-    TResult? Function()? success,
-    TResult? Function(AppException$Base error)? error,
+    TResult? Function(HomeData? homeData)? idle,
+    TResult? Function(HomeData? homeData)? processing,
+    TResult? Function(HomeData homeData)? success,
+    TResult? Function(HomeData? homeData, AppException$Base error)? error,
   }) {
-    return idle?.call();
+    return idle?.call(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? processing,
-    TResult Function()? success,
-    TResult Function(AppException$Base error)? error,
+    TResult Function(HomeData? homeData)? idle,
+    TResult Function(HomeData? homeData)? processing,
+    TResult Function(HomeData homeData)? success,
+    TResult Function(HomeData? homeData, AppException$Base error)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle();
+      return idle(homeData);
     }
     return orElse();
   }
@@ -603,14 +676,31 @@ class _$HomeState$IdleImpl implements HomeState$Idle {
 }
 
 abstract class HomeState$Idle implements HomeState {
-  const factory HomeState$Idle() = _$HomeState$IdleImpl;
+  const factory HomeState$Idle(final HomeData? homeData) = _$HomeState$IdleImpl;
+
+  @override
+  HomeData? get homeData;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeState$IdleImplCopyWith<_$HomeState$IdleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeState$ProcessingImplCopyWith<$Res> {
+abstract class _$$HomeState$ProcessingImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
   factory _$$HomeState$ProcessingImplCopyWith(_$HomeState$ProcessingImpl value,
           $Res Function(_$HomeState$ProcessingImpl) then) =
       __$$HomeState$ProcessingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({HomeData? homeData});
+
+  @override
+  $HomeDataCopyWith<$Res>? get homeData;
 }
 
 /// @nodoc
@@ -623,61 +713,89 @@ class __$$HomeState$ProcessingImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? homeData = freezed,
+  }) {
+    return _then(_$HomeState$ProcessingImpl(
+      freezed == homeData
+          ? _value.homeData
+          : homeData // ignore: cast_nullable_to_non_nullable
+              as HomeData?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeState$ProcessingImpl implements HomeState$Processing {
-  const _$HomeState$ProcessingImpl();
+  const _$HomeState$ProcessingImpl(this.homeData);
+
+  @override
+  final HomeData? homeData;
 
   @override
   String toString() {
-    return 'HomeState.processing()';
+    return 'HomeState.processing(homeData: $homeData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeState$ProcessingImpl);
+            other is _$HomeState$ProcessingImpl &&
+            (identical(other.homeData, homeData) ||
+                other.homeData == homeData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, homeData);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeState$ProcessingImplCopyWith<_$HomeState$ProcessingImpl>
+      get copyWith =>
+          __$$HomeState$ProcessingImplCopyWithImpl<_$HomeState$ProcessingImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() processing,
-    required TResult Function() success,
-    required TResult Function(AppException$Base error) error,
+    required TResult Function(HomeData? homeData) idle,
+    required TResult Function(HomeData? homeData) processing,
+    required TResult Function(HomeData homeData) success,
+    required TResult Function(HomeData? homeData, AppException$Base error)
+        error,
   }) {
-    return processing();
+    return processing(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? processing,
-    TResult? Function()? success,
-    TResult? Function(AppException$Base error)? error,
+    TResult? Function(HomeData? homeData)? idle,
+    TResult? Function(HomeData? homeData)? processing,
+    TResult? Function(HomeData homeData)? success,
+    TResult? Function(HomeData? homeData, AppException$Base error)? error,
   }) {
-    return processing?.call();
+    return processing?.call(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? processing,
-    TResult Function()? success,
-    TResult Function(AppException$Base error)? error,
+    TResult Function(HomeData? homeData)? idle,
+    TResult Function(HomeData? homeData)? processing,
+    TResult Function(HomeData homeData)? success,
+    TResult Function(HomeData? homeData, AppException$Base error)? error,
     required TResult orElse(),
   }) {
     if (processing != null) {
-      return processing();
+      return processing(homeData);
     }
     return orElse();
   }
@@ -721,14 +839,32 @@ class _$HomeState$ProcessingImpl implements HomeState$Processing {
 }
 
 abstract class HomeState$Processing implements HomeState {
-  const factory HomeState$Processing() = _$HomeState$ProcessingImpl;
+  const factory HomeState$Processing(final HomeData? homeData) =
+      _$HomeState$ProcessingImpl;
+
+  @override
+  HomeData? get homeData;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeState$ProcessingImplCopyWith<_$HomeState$ProcessingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeState$SuccessImplCopyWith<$Res> {
+abstract class _$$HomeState$SuccessImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
   factory _$$HomeState$SuccessImplCopyWith(_$HomeState$SuccessImpl value,
           $Res Function(_$HomeState$SuccessImpl) then) =
       __$$HomeState$SuccessImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({HomeData homeData});
+
+  @override
+  $HomeDataCopyWith<$Res> get homeData;
 }
 
 /// @nodoc
@@ -741,60 +877,98 @@ class __$$HomeState$SuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? homeData = null,
+  }) {
+    return _then(_$HomeState$SuccessImpl(
+      null == homeData
+          ? _value.homeData
+          : homeData // ignore: cast_nullable_to_non_nullable
+              as HomeData,
+    ));
+  }
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $HomeDataCopyWith<$Res> get homeData {
+    return $HomeDataCopyWith<$Res>(_value.homeData, (value) {
+      return _then(_value.copyWith(homeData: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$HomeState$SuccessImpl implements HomeState$Success {
-  const _$HomeState$SuccessImpl();
+  const _$HomeState$SuccessImpl(this.homeData);
+
+  @override
+  final HomeData homeData;
 
   @override
   String toString() {
-    return 'HomeState.success()';
+    return 'HomeState.success(homeData: $homeData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HomeState$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$HomeState$SuccessImpl &&
+            (identical(other.homeData, homeData) ||
+                other.homeData == homeData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, homeData);
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeState$SuccessImplCopyWith<_$HomeState$SuccessImpl> get copyWith =>
+      __$$HomeState$SuccessImplCopyWithImpl<_$HomeState$SuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() processing,
-    required TResult Function() success,
-    required TResult Function(AppException$Base error) error,
+    required TResult Function(HomeData? homeData) idle,
+    required TResult Function(HomeData? homeData) processing,
+    required TResult Function(HomeData homeData) success,
+    required TResult Function(HomeData? homeData, AppException$Base error)
+        error,
   }) {
-    return success();
+    return success(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? processing,
-    TResult? Function()? success,
-    TResult? Function(AppException$Base error)? error,
+    TResult? Function(HomeData? homeData)? idle,
+    TResult? Function(HomeData? homeData)? processing,
+    TResult? Function(HomeData homeData)? success,
+    TResult? Function(HomeData? homeData, AppException$Base error)? error,
   }) {
-    return success?.call();
+    return success?.call(homeData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? processing,
-    TResult Function()? success,
-    TResult Function(AppException$Base error)? error,
+    TResult Function(HomeData? homeData)? idle,
+    TResult Function(HomeData? homeData)? processing,
+    TResult Function(HomeData homeData)? success,
+    TResult Function(HomeData? homeData, AppException$Base error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(homeData);
     }
     return orElse();
   }
@@ -838,16 +1012,32 @@ class _$HomeState$SuccessImpl implements HomeState$Success {
 }
 
 abstract class HomeState$Success implements HomeState {
-  const factory HomeState$Success() = _$HomeState$SuccessImpl;
+  const factory HomeState$Success(final HomeData homeData) =
+      _$HomeState$SuccessImpl;
+
+  @override
+  HomeData get homeData;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeState$SuccessImplCopyWith<_$HomeState$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeState$ErrorImplCopyWith<$Res> {
+abstract class _$$HomeState$ErrorImplCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
   factory _$$HomeState$ErrorImplCopyWith(_$HomeState$ErrorImpl value,
           $Res Function(_$HomeState$ErrorImpl) then) =
       __$$HomeState$ErrorImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({AppException$Base error});
+  $Res call({HomeData? homeData, AppException$Base error});
+
+  @override
+  $HomeDataCopyWith<$Res>? get homeData;
 }
 
 /// @nodoc
@@ -863,10 +1053,15 @@ class __$$HomeState$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? homeData = freezed,
     Object? error = null,
   }) {
     return _then(_$HomeState$ErrorImpl(
-      null == error
+      freezed == homeData
+          ? _value.homeData
+          : homeData // ignore: cast_nullable_to_non_nullable
+              as HomeData?,
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as AppException$Base,
@@ -877,14 +1072,16 @@ class __$$HomeState$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeState$ErrorImpl implements HomeState$Error {
-  const _$HomeState$ErrorImpl(this.error);
+  const _$HomeState$ErrorImpl(this.homeData, {required this.error});
 
+  @override
+  final HomeData? homeData;
   @override
   final AppException$Base error;
 
   @override
   String toString() {
-    return 'HomeState.error(error: $error)';
+    return 'HomeState.error(homeData: $homeData, error: $error)';
   }
 
   @override
@@ -892,11 +1089,13 @@ class _$HomeState$ErrorImpl implements HomeState$Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeState$ErrorImpl &&
+            (identical(other.homeData, homeData) ||
+                other.homeData == homeData) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, homeData, error);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -910,36 +1109,37 @@ class _$HomeState$ErrorImpl implements HomeState$Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function() processing,
-    required TResult Function() success,
-    required TResult Function(AppException$Base error) error,
+    required TResult Function(HomeData? homeData) idle,
+    required TResult Function(HomeData? homeData) processing,
+    required TResult Function(HomeData homeData) success,
+    required TResult Function(HomeData? homeData, AppException$Base error)
+        error,
   }) {
-    return error(this.error);
+    return error(homeData, this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function()? processing,
-    TResult? Function()? success,
-    TResult? Function(AppException$Base error)? error,
+    TResult? Function(HomeData? homeData)? idle,
+    TResult? Function(HomeData? homeData)? processing,
+    TResult? Function(HomeData homeData)? success,
+    TResult? Function(HomeData? homeData, AppException$Base error)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(homeData, this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? processing,
-    TResult Function()? success,
-    TResult Function(AppException$Base error)? error,
+    TResult Function(HomeData? homeData)? idle,
+    TResult Function(HomeData? homeData)? processing,
+    TResult Function(HomeData homeData)? success,
+    TResult Function(HomeData? homeData, AppException$Base error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(homeData, this.error);
     }
     return orElse();
   }
@@ -983,13 +1183,16 @@ class _$HomeState$ErrorImpl implements HomeState$Error {
 }
 
 abstract class HomeState$Error implements HomeState {
-  const factory HomeState$Error(final AppException$Base error) =
-      _$HomeState$ErrorImpl;
+  const factory HomeState$Error(final HomeData? homeData,
+      {required final AppException$Base error}) = _$HomeState$ErrorImpl;
 
+  @override
+  HomeData? get homeData;
   AppException$Base get error;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeState$ErrorImplCopyWith<_$HomeState$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;

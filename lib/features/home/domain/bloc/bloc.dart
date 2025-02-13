@@ -1,3 +1,4 @@
+import 'package:error_handler/features/home/domain/entitites/home_data.dart';
 import 'package:error_handler/features/home/domain/repositories/home_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
